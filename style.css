@@ -88,5 +88,56 @@ input{
     filter: blur(10px);
     pointer-events: none; /*search*/
     user-select: none;  /*search*/
-}
+} 
 
+/*tocontainer*/
+#todoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+}
+.todo{
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 350px;
+    width: 300px;
+    position: relative;
+}
+.heading{
+    color: crimson;
+    font-size: 24px;
+    text-align: center;
+}
+.task{
+    text-align: center;
+}
+.addTask{
+    font-size: 20px;
+    color: white;
+    background-color: blue;
+    height: 30px;
+    width: 30px;
+    font-weight: bolder;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+.deleteTask{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+    background-image: url(/images/img.png);
+    background-position: center;
+    position: absolute;
+    bottom: 20px;
+    right: 45px;
+}
+.line{
+    
+}

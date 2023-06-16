@@ -1,0 +1,92 @@
+body{
+    background-color: black;
+    overflow: hidden;
+}
+.nav{
+    display: flex;
+    justify-content: space-around;
+}
+.name{
+    margin-top: 20px;
+    display: flex;
+}
+.firsttxt{
+    font-weight: bold;
+    font-size: 32px;
+    color: white;
+    margin-right: 10px;
+}
+.secondtxt{
+    font-size: 32px;
+    color: white;
+}
+.threetxt{
+    font-size: 24px;
+    color: white;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+.plusbutton{
+    height: 40px;
+    width: 40px;
+    background-color: blue;
+    color: black;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 32px;
+}
+.removetxt{
+    color: white;
+    font-size: 24px;
+    position: relative;
+    left: 300px;
+}
+/* popup */
+.popup{
+    width: 300px;
+    height: 150px;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    text-align: center;
+    padding: 30px 30px 30px 30px;
+    transform: translate(-50% ,-50%) scale(0.1);
+    visibility: hidden;
+}
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50% ,-50%) scale(1);
+}
+.poptxt{
+    color: crimson;
+    font-size: 24px;
+}
+input{
+    width: 250px;
+    height: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+.popbutton{
+    color: white;
+    background-color: crimson;
+    height: 30px;
+    width: 70px;
+    border-radius: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#blur.active{
+    filter: blur(10px);
+    pointer-events: none; /*search*/
+    user-select: none;  /*search*/
+}
+

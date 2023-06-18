@@ -6,6 +6,7 @@ var popupclose=document.getElementById('popupclose');
 var popupadd = document.getElementById('popupadd');
 var todoContainer = document.getElementById('todoContainer');
 var itemInput = document.getElementById('itemInput');
+var popupAdd = document.getElementById('popupAdd');
 
 function openPopUp(){
     popup.classList.add("open-popup");
@@ -17,7 +18,10 @@ function closePopUp(){
 }
 
 plusbutton.addEventListener('click', () => {
+    popupadd.classList.remove("invisible");
+    popupAdd.classList.add("invisible");
     poptxt.innerHTML = "Add New List";
+
     openPopUp();
 });
 
@@ -38,7 +42,6 @@ popupadd.addEventListener('click', () => {
     heading.classList.add('heading');
 
     var line = document.createElement('hr');
-    line.classList.add('line')
 
     var task = document.createElement('div');
     task.classList.add('task');
@@ -68,13 +71,29 @@ popupadd.addEventListener('click', () => {
 
     //add task
     addTask.addEventListener('click' , () => {
+        popupAdd.classList.remove("invisible");
+        popupadd.classList.add("invisible");
+        poptxt.innerHTML = "Add New Item";
+        openPopUp();
         
-        
+        popupAdd.addEventListener('click' , () =>{
+            if(value !== ''){
+                var list = document.createElement('p');
+                list.textContent= value;
+                list.classList.add('list');
+    
+                var markButton = document.createElement('button');
+                markButton.classList.add('markButton');
+
+                task.appendChild(list);
+                task.appendChild(markButton);
+                
+            }
+            closePopUp()
+        })
     })
     }
     
     //to remove popup logic
-    popup.classList.remove("open-popup");
-    blur.classList.remove('active');
-    //   itemInput.textContent = ""
+    closePopUp()
 });

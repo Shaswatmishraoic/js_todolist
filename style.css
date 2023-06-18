@@ -138,6 +138,9 @@ input{
     bottom: 20px;
     right: 45px;
 }
-.line{
-    
+
+/*second popup*/
+.invisible{
+    visibility: hidden;
+    width: 0px;
 }

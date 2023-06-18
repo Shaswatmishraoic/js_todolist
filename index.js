@@ -1,99 +1,197 @@
-var plusbutton = document.getElementById('plusbutton')
-var popup =document.getElementById('popup');
-var blur= document.getElementById('blur');
-var poptxt = document.getElementById('poptxt');
-var popupclose=document.getElementById('popupclose');
-var popupadd = document.getElementById('popupadd');
-var todoContainer = document.getElementById('todoContainer');
-var itemInput = document.getElementById('itemInput');
-var popupAdd = document.getElementById('popupAdd');
+const plusButton = document.getElementById('plusButton');
+const todoContainer = document.getElementById('todoContainer');
+const blur= document.getElementById('blur');
+const popup =document.getElementById('popup');
+const itemInput = document.getElementById('itemInput');
+const popupClose=document.getElementById('popupClose');
+const popupAdd = document.getElementById('popupAdd');
+const popup2 =document.getElementById('popup2');
+const itemInput2 = document.getElementById('itemInput2');
+const popupClose2=document.getElementById('popupClose2');
+const popupAdd2 = document.getElementById('popupAdd2');
 
-function openPopUp(){
+
+// to store card data
+let cards = []
+
+// to display cards
+dispalyCards()
+
+/**
+ * List of event listeners
+ * 1. Plus button \/
+ * 2. 1st popup add button \/
+ * 3. 1st popup closebutton \/
+ * 4. Card add button \/
+ * 5. Card delete button \/
+ * 6. 2nd popup add button \/
+ * 7. 2nd popup close button \/
+ * 8. Item mark button
+ * 9. Card Name
+ * 10. Back button
+ */
+
+// 1. Event listener for plus button
+plusButton.addEventListener('click', () => {
     popup.classList.add("open-popup");
     blur.classList.toggle('active');
-}
-function closePopUp(){
+})
+
+// 2. Event listener for 1st popup add button
+popupAdd.addEventListener('click', () => {
+    let cardName = itemInput.value
+    
+    if(cardName !== ''){
+        // card object
+        const card = {
+            name: cardName,
+            items: []
+        }
+
+        // push card object to cards
+        cards.push(card)
+    }
+
+    // to close popup and remove input value from text field
+    cardName = ''
     popup.classList.remove("open-popup");
     blur.classList.remove('active');
-}
 
-plusbutton.addEventListener('click', () => {
-    popupadd.classList.remove("invisible");
-    popupAdd.classList.add("invisible");
-    poptxt.innerHTML = "Add New List";
+    // display the updated card
+    dispalyCards()
+})
 
-    openPopUp();
+// 3. Event listener for 1st popup close button
+popupClose.addEventListener('click' , () => {
+    popup.classList.remove("open-popup");
+    blur.classList.remove('active');
 });
 
-popupclose.addEventListener('click' , () => {
-    closePopUp();
-});
+ // 6. Event listener for 2nd popup add button
+ popupAdd2.addEventListener('click', () => {
+    const cardIndex = popup2.dataset.cardIndex;
+    const card = cards[cardIndex];
+    let itemName = itemInput2.value
 
-popupadd.addEventListener('click', () => {
-    var value = itemInput.value;
+    if(itemName !== ''){
+        // item object
+        const item = {
+            name: itemName
+        }
 
-    if(value !== ''){
-    // card-Cointainer
-    var todo = document.createElement('div'); 
-    todo.classList.add('todo');
+        // push item inside card items
+        card.items.push(item)
 
-    var heading = document.createElement('p');
-    heading.textContent= value;
-    heading.classList.add('heading');
+        // 2nd popup close logic
+        popup2.classList.remove('open-popup')
+        blur.classList.remove('active')
 
-    var line = document.createElement('hr');
+        // display the updated card
+        dispalyCards()
+    }
+})
 
-    var task = document.createElement('div');
-    task.classList.add('task');
+// 7. Event listener for 2nd popup close button
+popupClose2.addEventListener('click', () => {
+    popup2.classList.remove('open-popup')
+    blur.classList.remove('active')
+})
 
-    var buttons = document.createElement('div');
+function dispalyCards(){
+    //clear the existing cards
+    todoContainer.innerHTML = '';
 
-    var deleteTask = document.createElement('button');
-    deleteTask.classList.add('deleteTask');
+    cards.forEach((card, index) => {
+        // create a new card element
+        let todo = document.createElement('div');
+        todo.classList.add('todo')
+
+        let heading = document.createElement('p')
+        heading.textContent = card.name;
+        heading.classList.add('heading')
+
+        let line = document.createElement('hr');
+ 
+        let task = document.createElement('div');
+        task.classList.add('task');
     
-
-    var addTask = document.createElement('button');
-    addTask.classList.add('addTask');
-    addTask.textContent= "+";
-
-    todoContainer.appendChild(todo);
-    todo.appendChild(heading);
-    todo.appendChild(line);
-    todo.appendChild(task);
-    todo.appendChild(buttons);
-    buttons.appendChild(deleteTask);
-    buttons.appendChild(addTask);
-
-    //buttons eventsLisner
-    deleteTask.addEventListener('click' , () => {
-        todo.remove()
-    });
-
-    //add task
-    addTask.addEventListener('click' , () => {
-        popupAdd.classList.remove("invisible");
-        popupadd.classList.add("invisible");
-        poptxt.innerHTML = "Add New Item";
-        openPopUp();
-        
-        popupAdd.addEventListener('click' , () =>{
-            if(value !== ''){
-                var list = document.createElement('p');
-                list.textContent= value;
-                list.classList.add('list');
+        let ulist= document.createElement('ul')
     
-                var markButton = document.createElement('button');
+        let buttons = document.createElement('div');
+    
+        let deleteCard = document.createElement('button');
+        deleteCard.classList.add('deleteCard');
+       
+        let addTask = document.createElement('button');
+        addTask.classList.add('addTask');
+        addTask.textContent= "+";
+
+        // card-Cointainer structure
+        todoContainer.appendChild(todo);
+        todo.appendChild(heading);
+        todo.appendChild(line);
+        todo.appendChild(task);
+        task.appendChild(ulist)
+        todo.appendChild(buttons);
+        buttons.appendChild(deleteCard);
+        buttons.appendChild(addTask);
+
+        // 4. Event listener to card add button
+        addTask.addEventListener('click', () => {
+            popup2.classList.add("open-popup");
+            blur.classList.toggle('active');
+            popup2.dataset.cardIndex = index;
+        })
+
+        // 5. Event listner to card delete button
+        deleteCard.addEventListener('click', () => {
+            cards.splice(index, 1)
+
+            //display the updated card
+            dispalyCards()
+        })
+
+        // add itemsin card logic
+        //clear the existing task list
+        // ulist.innerHTML = '';
+        card.items.forEach((item) => {
+            let list = document.createElement('li');
+            list.classList.add('list');
+
+            let label = document.createElement('label')
+            label.textContent= item.name;
+
+             // task container structure
+             ulist.appendChild(list)
+             list.appendChild(label)
+
+            //check if the item is marked as done
+            if(item.done){
+                list.classList.add('crossList');
+            }else{
+                let markButton = document.createElement('button');
                 markButton.classList.add('markButton');
+                markButton.innerHTML = 'Mark Done';
 
-                task.appendChild(list);
-                task.appendChild(markButton);
-                
+                // 8. Event listener for item mark button
+                markButton.addEventListener('click', () => {
+                // Toggle the 'crossList' class and remove the mark button
+                list.classList.toggle('crossList');
+                markButton.remove();
+
+                // Update the 'done' property of the item
+                item.done = !item.done;
+
+                // Display the updated cards
+                displayCards();
+            });
+
+            list.appendChild(markButton);
             }
-            closePopUp()
         })
     })
-    }
-    
-    //to remove popup logic
-    closePopUp()
-});
+}
+
+
+
+

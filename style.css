@@ -27,7 +27,7 @@ body{
     top: 5px;
     left: 5px;
 }
-.plusbutton{
+.plusButton{
     height: 40px;
     width: 40px;
     background-color: blue;
@@ -74,7 +74,7 @@ input{
     text-align: center;
     border-radius: 10px;
 }
-.popbutton{
+.popButton{
     color: white;
     background-color: crimson;
     height: 30px;
@@ -127,7 +127,7 @@ input{
     bottom: 20px;
     right: 10px;
 }
-.deleteTask{
+.deleteCard{
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -139,8 +139,23 @@ input{
     right: 45px;
 }
 
-/*second popup*/
-.invisible{
+/*inner list*/
+.list{
+    list-style: none;
+}
+.markButton{
+    height: 16px;
+    width: 81px;
+    color: white;
+    background-color: blue;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.crossList{
+    color: red;
+    text-decoration: line-through;
+    text-align: center;
+}
+.hideDelete{
     visibility: hidden;
-    width: 0px;
 }

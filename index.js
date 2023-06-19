@@ -9,7 +9,12 @@ const popup2 =document.getElementById('popup2');
 const itemInput2 = document.getElementById('itemInput2');
 const popupClose2=document.getElementById('popupClose2');
 const popupAdd2 = document.getElementById('popupAdd2');
-
+const back = document.getElementById('back');
+const tasklist = document.getElementById('tasklist');
+const addItem = document.getElementById('addItem');
+const centerHeading = document.getElementById('centerHeading');
+const backButton = document.getElementById('backButton');
+const cardHeading = document.getElementById('cardHeading')
 
 // to store card data
 let cards = []
@@ -26,9 +31,9 @@ dispalyCards()
  * 5. Card delete button \/
  * 6. 2nd popup add button \/
  * 7. 2nd popup close button \/
- * 8. Item mark button
+ * 8. Item mark button \/
  * 9. Card Name
- * 10. Back button
+ * 10. Back button \/
  */
 
 // 1. Event listener for plus button
@@ -39,6 +44,7 @@ plusButton.addEventListener('click', () => {
 
 // 2. Event listener for 1st popup add button
 popupAdd.addEventListener('click', () => {
+    document.getElementById("removetxt").style.display = "none";
     let cardName = itemInput.value
     
     if(cardName !== ''){
@@ -58,6 +64,11 @@ popupAdd.addEventListener('click', () => {
     blur.classList.remove('active');
 
     // display the updated card
+    back.classList.add('invisible');
+    tasklist.classList.remove('invisible');
+    addItem.classList.remove('invisible');
+    todoContainer.classList.remove('invisible');
+    centerHeading.classList.add('invisible');
     dispalyCards()
 })
 
@@ -151,9 +162,36 @@ function dispalyCards(){
             dispalyCards()
         })
 
+        // 9. Event listener for card name
+        heading.addEventListener('click', () => {
+            back.classList.remove('invisible');
+            tasklist.classList.add('invisible');
+            addItem.classList.add('invisible');
+            todoContainer.classList.add('invisible');
+            centerHeading.classList.remove('invisible');
+
+            cardHeading.textContent = card.name;
+
+            let newCardContainer = document.createElement('div')
+            newCardContainer.classList.add('centerCard')
+
+            blur.appendChild(newCardContainer)
+            newCardContainer.appendChild(todo)
+
+        })
+
+        // 10. Event listener for bak button
+        backButton.addEventListener('click', () => {
+            back.classList.add('invisible');
+            tasklist.classList.remove('invisible');
+            addItem.classList.remove('invisible');
+            todoContainer.classList.remove('invisible');
+            centerHeading.classList.add('invisible');
+            
+            blur.removeChild(newCardContainer)
+        })
+
         // add itemsin card logic
-        //clear the existing task list
-        // ulist.innerHTML = '';
         card.items.forEach((item) => {
             let list = document.createElement('li');
             list.classList.add('list');

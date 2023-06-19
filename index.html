@@ -9,16 +9,23 @@
   <body>
     <div class="blur" id="blur">
     <div class="nav">
-      <div class="name">
+      <div class="name invisible" id="back">
+        <button class="backButton" id="backButton"><</button>
+        <div class="secondtxt">Back</div>
+      </div>
+      <div class="name" id="tasklist">
         <div class="firsttxt">Tasks</div>
         <div class="secondtxt">List</div>
       </div>
+      <div class="centerHeading invisible" id="centerHeading">
+        <div class="firsttxt" id="cardHeading">Card Name</div>
+      </div>
       <div class="name">
         <button class="plusButton" id="plusButton">+</button>
-        <div class="threetxt">Add Item</div>
+        <div class="threetxt" id="addItem">Add Item</div>
       </div>
     </div>
-    <div class="removetxt"><p>No Items in the todo list</p></div>
+    <div class="removetxt" id="removetxt"><p>No Items in the todo list</p></div>
     <!--todo-container-->
     <div id="todoContainer"></div>
   </div>

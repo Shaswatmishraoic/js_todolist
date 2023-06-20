@@ -16,6 +16,7 @@ const centerHeading = document.getElementById('centerHeading');
 const backButton = document.getElementById('backButton');
 const cardHeading = document.getElementById('cardHeading')
 var newCardContainer;
+var updatedList;
 
 
 // to store card data
@@ -31,7 +32,7 @@ displayCards()
  * 3. 1st popup closebutton \/
  * 4. Card add button \/
  * 5. Card delete button \/
- * 6. 2nd popup add button \/
+ * 6. 2nd popup add button 
  * 7. 2nd popup close button \/
  * 8. Item mark button \/
  * 9. Card Name \/
@@ -61,7 +62,7 @@ popupAdd.addEventListener('click', () => {
     }
 
     // to close popup and remove input value from text field
-    cardName = ''
+    itemInput.value = '';
     popup.classList.remove("open-popup");
     blur.classList.remove('active');
 
@@ -69,6 +70,8 @@ popupAdd.addEventListener('click', () => {
     if (newCardContainer) {
         newCardContainer.remove();
         newCardContainer = null;
+        updatedList.remove();
+        updatedList = null
     }
 
     // display the updated card
@@ -88,35 +91,61 @@ popupClose.addEventListener('click' , () => {
 
 // 6. Event listener for 2nd popup add button
 popupAdd2.addEventListener('click', () => {
-const cardIndex = popup2.dataset.cardIndex;
-const card = cards[cardIndex];
-var itemName = itemInput2.value
+    const cardIndex = popup2.dataset.cardIndex;
+    const card = cards[cardIndex];
+    var itemName = itemInput2.value;
 
-if(itemName !== ''){
-        // item object
-        const item = {
-            name: itemName
-            // done: false // Add a 'done' property to the item
-        }
+    if (itemName !== '') {
+            // item object
+            const item = {
+                name: itemName,
+                done: false
+            };
 
         // push item inside card items
-        card.items.push(item)
+        card.items.push(item);
 
         // 2nd popup close logic
-        popup2.classList.remove('open-popup')
-        blur.classList.remove('active')
+        popup2.classList.remove('open-popup');
+        blur.classList.remove('active');
 
         // Clear the input field
         itemInput2.value = '';
+        
+        displayCards(); // Regenerate items and display the updated cards
+        
+        // rebuild the card from main page update
+        var list = document.createElement('li');
+        list.classList.add('list');
 
-        displayCards();
+        var label = document.createElement('label')
+        label.textContent= item.name;
 
-        // display the updated card
-        if (newCardContainer) {
-        // logic for add button when card is inside heading page
-            //clear the existing cards
-            todo.innerHTML = '';
-            newCardContainer.appendChild(todo)
+        // task container structure
+        updatedList.appendChild(list)
+        list.appendChild(label)
+
+        if(item.done){
+            list.classList.add('crossList');
+        }else{
+            var markButton = document.createElement('button');
+            markButton.classList.add('markButton');
+            markButton.innerHTML = 'Mark Done';
+
+            // 8. Event listener for item mark button
+            markButton.addEventListener('click', () => {
+            // Toggle the 'crossList' class and remove the mark button
+            list.classList.toggle('crossList');
+            markButton.remove();
+
+            // Update the 'done' property of the item
+            item.done = !item.done;
+
+            // Display the updated cards
+            displayCards();
+        });
+
+        list.appendChild(markButton);
         }
     }
 })
@@ -138,6 +167,8 @@ backButton.addEventListener('click', () => {
     if (newCardContainer) {
         newCardContainer.remove();
         newCardContainer = null;
+        updatedList.remove();
+        updatedList = null;
     }
     displayCards()
 })
@@ -218,17 +249,27 @@ function displayCards(){
             centerHeading.classList.remove('invisible');
 
             cardHeading.textContent = card.name;
+
+             // Remove the previous newCardContainer if it exists
+            if (newCardContainer) {
+                newCardContainer.remove();
+                newCardContainer = null;
+                updatedList.remove();
+                updatedList = null;
+            }
             
             newCardContainer = document.createElement('div')
             newCardContainer.classList.add('centerCard')
 
+            updatedList = document.createElement('ul')
+
             blur.appendChild(newCardContainer)
-            newCardContainer.innerHTML = '';
             newCardContainer.appendChild(todo)
+            task.appendChild(updatedList)
         })
 
         // add items in card logic
-        card.items.forEach((item, itemIndex) => {
+        card.items.forEach((item) => {
             var list = document.createElement('li');
             list.classList.add('list');
 
@@ -269,3 +310,6 @@ function displayCards(){
 
 
 
+
+
+ 

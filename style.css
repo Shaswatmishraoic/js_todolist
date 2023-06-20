@@ -6,6 +6,11 @@ body{
 .invisible{
     visibility: hidden;
 }
+.todoinvisible{
+    height: 0px;
+    width: 0px;
+    visibility: hidden;
+}
 .nav{
     display: flex;
     justify-content: space-evenly;

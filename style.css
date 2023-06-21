@@ -1,3 +1,15 @@
+
+/* Style buttons */
+.btn {
+    background-color: red; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+  }
+
+
 /*main page*/
 body{
     background-color: black;
@@ -156,14 +168,16 @@ input{
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: red;
-    background-image: url(/images/img.png);
+    /* background-image: url(/images/img.png); */
     background-position: center;
     position: absolute;
     bottom: 20px;
     right: 45px;
-    cursor: pointer;
-}
+    background-color: red;
+    color: white; /* White text */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+} */
 
 /*inner list*/
 .list{

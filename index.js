@@ -32,7 +32,7 @@ displayCards()
  * 3. 1st popup closebutton \/
  * 4. Card add button \/
  * 5. Card delete button \/
- * 6. 2nd popup add button 
+ * 6. 2nd popup add button \/
  * 7. 2nd popup close button \/
  * 8. Item mark button \/
  * 9. Card Name \/
@@ -198,6 +198,7 @@ function displayCards(){
     
         var deleteCard = document.createElement('button');
         deleteCard.classList.add('deleteCard');
+        // deleteCard.classList.add('btn');
        
         var addTask = document.createElement('button');
         addTask.classList.add('addTask');
@@ -239,6 +240,9 @@ function displayCards(){
             }
             displayCards()
         })
+
+        // Set the delete button's inner HTML to include the trash icon
+        deleteCard.innerHTML = '<i class="fa fa-trash"></i>';
 
         // 9. Event listener for card name
         heading.addEventListener('click', () => {

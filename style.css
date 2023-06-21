@@ -25,11 +25,13 @@ body{
 }
 .nav{
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
 .name{
     margin-top: 20px;
     display: flex;
+    position: relative;
+    left: 200px;
 }
 .firsttxt{
     font-weight: bold;
@@ -46,7 +48,7 @@ body{
     color: white;
     position: relative;
     top: 5px;
-    left: 5px;
+    left: 485px;
 }
 .plusButton{
     height: 40px;
@@ -57,12 +59,14 @@ body{
     border-radius: 50%;
     cursor: pointer;
     font-size: 32px;
+    position: relative;
+    left: 480px;
 }
 .removetxt{
     color: white;
     font-size: 24px;
     position: relative;
-    left: 460px;
+    left: 300px;
 }
 
 .backButton{
@@ -147,6 +151,7 @@ input{
     color: crimson;
     font-size: 24px;
     text-align: center;
+    cursor: pointer;
 }
 .task{
     text-align: center;
@@ -181,7 +186,10 @@ input{
 
 /*inner list*/
 .list{
-    list-style: none;
+    list-style-type: none;
+}
+ul{
+    list-style-type: none;
 }
 .markButton{
     height: 16px;
@@ -205,4 +213,96 @@ input{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.first{
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 32px;
+    position: relative;
+    left: 440px;
+}
+@media screen and (min-width:280px) and (max-width:500px){
+    #todoContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .first{
+        position: absolute;
+        left: 151px;
+        top: 22px;
+    }
+    .plusButton{
+        position: absolute;
+        left: 117px;
+        top: -25px;
+    }
+    .threetxt{
+        display: none;
+    }
+    .firsttxt{
+        position: absolute;
+        left: -207px;
+        top: -20px;
+    }
+    .secondtxt{
+        position: absolute;
+        left: -132px;
+        top: -19px;
+    }
+    body{
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .backButton{
+        position: absolute;
+        top: -20px;
+        left: -177px;
+    }
+    .removetxt{
+        position: absolute;
+        top: 20px;
+        left: 10px;
+    }
+}
+@media screen and (min-width:500px) and (max-width:900px) {
+    #todoContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .first{
+        position: absolute;
+        left: 315px;
+        top: 22px;
+    }
+    .plusButton{
+        position: absolute;
+        left: 350px;
+        top: -25px;
+    }
+    .threetxt{
+        display: none;
+    }
+    .firsttxt{
+        position: absolute;
+        left: -207px;
+        top: -20px;
+    }
+    .secondtxt{
+        position: absolute;
+        left: -132px;
+        top: -19px;
+    }
+    body{
+        overflow: hidden;
+    }
+    .backButton{
+        position: absolute;
+        top: -20px;
+        left: -177px;
+    }
+    .removetxt{
+        position: absolute;
+        top: 20px;
+        left: 10px;
+    }
 }

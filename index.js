@@ -193,12 +193,12 @@ function displayCards(){
         task.classList.add('task');
     
         var ulist= document.createElement('ul')
-    
+        ulist.classList.add('list');
+        
         var buttons = document.createElement('div');
     
         var deleteCard = document.createElement('button');
         deleteCard.classList.add('deleteCard');
-        // deleteCard.classList.add('btn');
        
         var addTask = document.createElement('button');
         addTask.classList.add('addTask');
@@ -266,6 +266,7 @@ function displayCards(){
             newCardContainer.classList.add('centerCard')
 
             updatedList = document.createElement('ul')
+            updatedList.classList.add('list')
 
             blur.appendChild(newCardContainer)
             newCardContainer.appendChild(todo)
